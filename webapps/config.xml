@@ -42,6 +42,6 @@
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
     <icon src="res/icon.png" />
-    <gap:splash src="res/icon.png" />    
+    <gap:splash src="res/screen/splash.png" />    
     <access origin="*" />
 </widget>
