@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8">
 <title>SWB Social Mobile</title>
- <script type="text/javascript" src="cordova.js"></script>
  <script type="text/javascript" src="js/index.js"></script>
+ <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 
 <script type="text/javascript">
     <!--
@@ -25,7 +27,7 @@
         if(supports_html5_storage())
         {
             var url2connect = localStorage.getItem("url2connect");
-            alert("Valor de url2connect al Inicio Jorge:"+url2connect);
+            //alert("Valor de url2connect al Inicio Jorge:"+url2connect);
             if(url2connect!=null && url2connect.trim().length>0)
             {
                 //alert("entra getMainContent-1.1:"+document.getElementById("url2set").src);
@@ -48,22 +50,6 @@
         }
     }
 
-    function setUrl2connect()
-    {
-        var url2connect=document.getElementById("url2set").value;
-        var myForm=document.forms["url2redirect"];
-        var element=myForm.elements["url2set"];
-        //var url2connect=document.getElementsByClassName("url2set")[1].value;
-        alert("entra setUrl2connect-1:"+element.value);
-        if(supports_html5_storage())
-        {
-            // Saving url2connect
-            localStorage.setItem("url2connect", url2connect);   
-            alert("entra setUrl2connect-2-Graba:"+localStorage.getItem("url2connect"));
-            document.getElementById("mainContent").innerHTML = document.getElementById("swbsocialIframe").innerHTML;
-        }
-    }
-
     // Prueba de lectura y escritura
     function resetUrl2connect()
     {      
@@ -74,32 +60,14 @@
         }
     }
  
-    //Getting the url to connect
-    function getUrl2connect()
-    {
-        var obj = document.getElementById('url2connect');
-
-        if(supports_html5_storage())
-        {
-            // Reading the storaged url
-            var url2connect = localStorage.getItem("url2connect");
-
-            // Establecemos el número
-            obj.innerHTML = url2connect;
-        }
-        else obj.innerHTML = '<span style="color: red;">ERROR</span>';
-    }
-    
     function setUrl(form)
     {
         if(supports_html5_storage()){
-            alert('va a poner Jorge3:'+form.url2set.value);
             localStorage.setItem('url2connect', form.url2set.value);
-            alert('Puso:'+localStorage.getItem('url2connect'));
+            //alert('Puso:'+localStorage.getItem('url2connect'));
             getMainContent();
         }
     }
-    
     
 -->
 </script>
@@ -113,6 +81,51 @@
 .visible{
     visibility: visible;
 }
+
+#Header {
+	position:absolute;
+	top:0; left:0;
+	width:100%;
+	background-color:#222;
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #999), color-stop(0.02, #666), color-stop(1, #222));
+	background-image:-moz-linear-gradient(top, #999, #666 2%, #222);
+	background-image:-o-linear-gradient(top, #999, #666 2%, #222);
+	padding:0;
+	border-top:1px solid #444;
+	font-size:20px;
+	text-align:center;
+}
+
+#Header a {
+	color:#FF8000;
+	text-decoration:none;
+	font-weight:bold;
+	text-shadow:0 -1px 0 rgba(0,0,0,0.5);
+}
+
+#footer {
+	position:absolute;
+	bottom:0; left:0;
+	width:100%;
+	height:48px;
+	background-color:#222;
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #999), color-stop(0.02, #666), color-stop(1, #222));
+	background-image:-moz-linear-gradient(top, #999, #666 2%, #222);
+	background-image:-o-linear-gradient(top, #999, #666 2%, #222);
+	padding:0;
+	border-top:1px solid #444;
+        text-align:center;
+}
+
+#mainContent {
+	position:absolute; z-index:1;
+	top:45px; bottom:48px; left:0;
+	width:100%;
+	background:#EFFBF5;
+	overflow:auto;
+}
+
+
 </style>
 
 
@@ -121,7 +134,7 @@
 
 <div id="swbsocialIframe" class="novisible">
     <div id="swbsocialIframeContent">
-        <iframe src="http://www.infotec.com.mx" style="width: 100%; height: 100%" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>";
+        <iframe src="#" style="width: 100%; height: 100%" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>";
     </div>
 </div>    
     
@@ -129,21 +142,33 @@
 <div id="captureUrl" class="novisible">
     <div id="captureUrlContent">
         <form name="url2redirect">
-            Ruta de servidor:<input type="url" name="url2set" id="url2set">
-            <button onclick="setUrl(this.form);return false;">ConectarMe</button>
+            <label for="url2set">Url de Servidor</label>
+            <input data-clear-btn="true" type="url" name="url2set" id="url2set">
+            <button onclick="setUrl(this.form);">Conectar</button>
         </form>
     </div>
 </div>
     
     
- <div id="main">
-    <div id="mainContent">	
-          <script type="text/javascript">// <![CDATA[
+ <div data-role="page" id="main">
+     <div data-role="panel" id="mainHelpPanel"> 
+        <h2>Ayuda</h2>
+        <p>Coloca la url para conectarte a tu instancia de SWBSocial</p>
+        <a href="#page" data-rel="close" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Cerrar</a>
+    </div>      
+    <div id="Header" data-role="header">
+        <h1><a target="_blank" href="http://www.semanticwebbuilder.com.mx/SWBSocial">SWB Social&copy;</a></h1>
+    </div>
+    <div data-role="main" class="ui-content" id="mainContent">
+        <script type="text/javascript">// <![CDATA[
             getMainContent();
         // ]]>  
         </script>
-    </div>
- </div>  
+    </div>                         
+ </div>
+<div id="footer" data-role="footer">
+     <a href="#mainHelpPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext">Ayuda</a>
+</div>   
     
  
 </body>
