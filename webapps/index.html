@@ -25,6 +25,7 @@
         if(supports_html5_storage())
         {
             var url2connect = localStorage.getItem("url2connect");
+            alert("Valor de url2connect al Inicio Jorge:"+url2connect);
             if(url2connect!=null && url2connect.trim().length>0)
             {
                 //alert("entra getMainContent-1.1:"+document.getElementById("url2set").src);
@@ -117,7 +118,7 @@
     <div id="captureUrlContent">
         <form name="url2redirect">
             Ruta de servidor:<input type="url" name="url2set" id="url2set">
-            <input type="button" value="Conectar" onClick="if(supports_html5_storage()){localStorage.setItem('url2connect', this.form.url2set.value);getMainContent();}">
+            <input type="button" value="Conectar" onClick="if(supports_html5_storage()){alert('va a poner:'+this.form.url2set.value);localStorage.setItem('url2connect', this.form.url2set.value);getMainContent();}"> 
         </form>
     </div>
 </div>
