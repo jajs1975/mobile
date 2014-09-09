@@ -6,94 +6,119 @@
  <script type="text/javascript" src="cordova.js"></script>
  <script type="text/javascript" src="js/index.js"></script>
 
-
-<!--iframe src="http://swbsocial.infotec.com.mx/es/SWBAdmin/socialMobile/" style="width: 100%; height: 100%"
-scrolling="no" marginwidth="0" marginheight="0" frameborder="0" vspace="0" hspace="0">
-</iframe-->
-
-<script type="text/javascript">// <![CDATA[
-        // http://diveintohtml5.info/storage.html
-        function supports_html5_storage()
+<script type="text/javascript">
+ //// <![CDATA[
+    // http://diveintohtml5.info/storage.html
+    function supports_html5_storage()
+    {
+        try
         {
-            try
-            {
-                return 'localStorage' in window && window['localStorage'] !== null;
-            }
-            catch (e)
-            {
-                return false;
-            }
+            return 'localStorage' in window && window['localStorage'] !== null;
         }
- 
-        // Prueba de lectura y escritura
-        function numCargas()
+        catch (e)
         {
-            var obj = document.getElementById('veces');
- 
-            if(supports_html5_storage())
-            {
-                // Leemos el contador actual
-                var num = localStorage.getItem("numCargas");
- 
-                if(num == null) num = 0;
-                else
-                {
-                    num = parseInt(num);
-                    if(num == 'NaN') num = 0;
-                }
- 
-                // Incrementamos y guardamos de nuevo
-                localStorage.setItem("numCargas", num+1);
- 
-                // Establecemos el número
-                obj.innerHTML = num;
-            }
-            else obj.innerHTML = '<span style="color: red;">ERROR</span>';
+            return false;
         }
- 
-        // Prueba de lectura y escritura
-        function resetearNumCargas()
-        {      
-            var obj = document.getElementById('veces');
- 
-            if(supports_html5_storage())
+    }
+    
+    function getMainContent()
+    {
+        if(supports_html5_storage())
+        {
+            var url2connect = localStorage.getItem("url2connect");
+            if(url2connect!=null && url2connect.trim().length>0)
             {
-                // Reseteamos
-                localStorage.setItem("numCargas", 0);
-                obj.innerHTML = 0;
+                document.getElementById("mainContent").innerHTML = document.getElementById("iframeContent").innerHTML;
             }
-            else obj.innerHTML = '<span style="color: red;">ERROR</span>';
+        }else{
+            document.getElementById("mainContent").innerHTML = document.getElementById("captureUrl").innerHTML;
         }
+    }
+
+    function setUrl2connect()
+    {
+        var url2connect=document.getElementById('url2set').value;
+        if(supports_html5_storage())
+        {
+            // Saving url2connect
+            localStorage.setItem("url2connect", url2connect);     
+            document.getElementById("mainContent").innerHTML = document.getElementById("iframeContent").innerHTML;
+        }
+    }
+
+    // Prueba de lectura y escritura
+    function resetUrl2connect()
+    {      
+        var obj = document.getElementById('url2connect');
+
+        if(supports_html5_storage())
+        {
+            // Reseteamos
+            localStorage.setItem("url2connect", "");
+            obj.innerHTML = "";
+        }
+        else obj.innerHTML = '<span style="color: red;">ERROR</span>';
+    }
  
-// ]]></script>
+    //Getting the url to connect
+    function getUrl2connect()
+    {
+        var obj = document.getElementById('url2connect');
+
+        if(supports_html5_storage())
+        {
+            // Reading the storaged url
+            var url2connect = localStorage.getItem("url2connect");
+
+            // Establecemos el número
+            obj.innerHTML = url2connect;
+        }
+        else obj.innerHTML = '<span style="color: red;">ERROR</span>';
+    }
+ 
+// ]]>
+</script>
+
+
+<style type="text/css" media="all">
+.novisible{
+    visibility: hidden;
+}
+
+.visible{
+    visibility: visible;
+}
+</style>
+
+
 </head>
 <body>
-<h1 style="margin: 0px; padding: 0px;">Testeos</h1>
-<pre></pre>
+
+
+<div id="main">
+    <div id="mainContent">	
+          <script type="text/javascript">// <![CDATA[
+            getMainContent();
+        // ]]>  
+        </script>
+    </div>
+ </div>    
+    
+<div id="iframe" class="novisible">
+    <div id="iframeContent">
+        <iframe src="http://www.google.com" style="width: 100%; height: 100%" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+    </div>
+</div>
+    
+<div id="captureUrl" class="novisible">
+    <div id="captureUrlContent">
+        <form>
+            Ruta de servidor:<input type="url" name="url2set">
+            <input type="button" value="Conectar" onClick="setUrl2connect();">
+        </form>
+    </div>
+</div>
+    
  
-<hr />
- 
-<pre></pre>
-<h2 style="margin: 0px; padding: 0px;">Almacenamiento</h2>
-<pre>
- La página se ha cargado <span id="veces"><script type="text/javascript">// <![CDATA[
-numCargas();
-// ]]></script></span> veces.
- 
- 
- <a href="javascript: location.reload();">Actualiza</a> o
- <a href="javascript: resetearNumCargas();">resetea</a> la cuenta.
- 
- 
- <a href="http://diveintohtml5.info/storage.html" target="new">HTML5 Local Storage</a>
- 
-</pre>
- 
-<hr />
- 
-<pre>
- 
- <a href="http://androide.hijodeblog.com" target="new">Diario de un Androide</a>
-</pre>
 </body>
 </html>
