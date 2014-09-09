@@ -36,7 +36,7 @@
                 //document.getElementById("mainContent").innerHTML = document.getElementById("iframeContent").innerHTML;
                 document.getElementById("mainContent").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
                 //document.all.mainContent.style.visibility = "visible";
-                //resetUrl2connect();
+                resetUrl2connect();
             }else{
                 var captureUrlContent=document.getElementById("captureUrlContent").innerHTML;
                 //alert("entra getMainContent-JJ2:"+captureUrlContent);
@@ -118,7 +118,7 @@
     <div id="captureUrlContent">
         <form name="url2redirect">
             Ruta de servidor:<input type="url" name="url2set" id="url2set">
-            <input type="button" value="Conectar" onClick="if(supports_html5_storage()){alert('va a poner:'+this.form.url2set.value);localStorage.setItem('url2connect', this.form.url2set.value);getMainContent();}"> 
+            <input type="button" value="Conectar" onClick="if(supports_html5_storage()){alert('va a poner Jorge:'+this.form.url2set.value);localStorage.setItem('url2connect', this.form.url2set.value);getMainContent();}"> 
         </form>
     </div>
 </div>
