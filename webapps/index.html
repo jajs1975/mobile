@@ -89,6 +89,18 @@
         }
         else obj.innerHTML = '<span style="color: red;">ERROR</span>';
     }
+    
+    function setUrl(form)
+    {
+        if(supports_html5_storage()){
+            alert('va a poner Jorge3:'+form.url2set.value);
+            localStorage.setItem('url2connect', form.url2set.value);
+            alert('Puso:'+localStorage.getItem('url2connect'));
+            getMainContent();
+        }
+    }
+    
+    
 -->
 </script>
 
@@ -118,7 +130,7 @@
     <div id="captureUrlContent">
         <form name="url2redirect">
             Ruta de servidor:<input type="url" name="url2set" id="url2set">
-            <input type="button" value="Conectar" onClick="if(supports_html5_storage()){alert('va a poner Jorge2:'+this.form.url2set.value);localStorage.setItem('url2connect', this.form.url2set.value);getMainContent();}"> 
+            <input type="button" value="Conectar" onClick="setUrl(this.form);return false;"> 
         </form>
     </div>
 </div>
