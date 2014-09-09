@@ -62,9 +62,10 @@
  
     function setUrl(form)
     {
+        alert("va a poner:"+form.url2set.value);
         if(supports_html5_storage()){
             localStorage.setItem('url2connect', form.url2set.value);
-            //alert('Puso:'+localStorage.getItem('url2connect'));
+            alert('Puso:'+localStorage.getItem('url2connect'));
             getMainContent();
         }
     }
