@@ -7,8 +7,7 @@
  <script type="text/javascript" src="js/index.js"></script>
 
 <script type="text/javascript">
- //// <![CDATA[
-    // http://diveintohtml5.info/storage.html
+    <!--
     function supports_html5_storage()
     {
         try
@@ -28,36 +27,50 @@
             var url2connect = localStorage.getItem("url2connect");
             if(url2connect!=null && url2connect.trim().length>0)
             {
-                document.getElementById("mainContent").innerHTML = document.getElementById("iframeContent").innerHTML;
+                //alert("entra getMainContent-1.1:"+document.getElementById("url2set").src);
+                //document.getElementById("iframe").style.visibility = "visible";
+                //document.all.iframe.style.visibility = "visible";
+                //document.all.iframeContent.style.visibility = "visible";
+                //alert("entra getMainContent-1.2:"+document.all.iframeContent.style.visibility);
+                //document.getElementById("mainContent").innerHTML = document.getElementById("iframeContent").innerHTML;
+                document.getElementById("mainContent").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+                //document.all.mainContent.style.visibility = "visible";
+                //resetUrl2connect();
+            }else{
+                var captureUrlContent=document.getElementById("captureUrlContent").innerHTML;
+                //alert("entra getMainContent-JJ2:"+captureUrlContent);
+                //document.getElementById("mainContent").innerHTML = document.getElementById("captureUrlContent").innerHTML;
+                //var captureUrlContent = document.getElementById('captureUrl').innerHTML;
+                //alert("captureUrlContentJ:"+captureUrlContent);
+                document.getElementById("mainContent").innerHTML = captureUrlContent;
             }
-        }else{
-            document.getElementById("mainContent").innerHTML = document.getElementById("captureUrl").innerHTML;
         }
     }
 
     function setUrl2connect()
     {
-        var url2connect=document.getElementById('url2set').value;
+        var url2connect=document.getElementById("url2set").value;
+        var myForm=document.forms["url2redirect"];
+        var element=myForm.elements["url2set"];
+        //var url2connect=document.getElementsByClassName("url2set")[1].value;
+        alert("entra setUrl2connect-1:"+element.value);
         if(supports_html5_storage())
         {
             // Saving url2connect
-            localStorage.setItem("url2connect", url2connect);     
-            document.getElementById("mainContent").innerHTML = document.getElementById("iframeContent").innerHTML;
+            localStorage.setItem("url2connect", url2connect);   
+            alert("entra setUrl2connect-2-Graba:"+localStorage.getItem("url2connect"));
+            document.getElementById("mainContent").innerHTML = document.getElementById("swbsocialIframe").innerHTML;
         }
     }
 
     // Prueba de lectura y escritura
     function resetUrl2connect()
     {      
-        var obj = document.getElementById('url2connect');
-
         if(supports_html5_storage())
         {
             // Reseteamos
             localStorage.setItem("url2connect", "");
-            obj.innerHTML = "";
         }
-        else obj.innerHTML = '<span style="color: red;">ERROR</span>';
     }
  
     //Getting the url to connect
@@ -75,8 +88,7 @@
         }
         else obj.innerHTML = '<span style="color: red;">ERROR</span>';
     }
- 
-// ]]>
+-->
 </script>
 
 
@@ -94,30 +106,31 @@
 </head>
 <body>
 
-
-<div id="main">
+<div id="swbsocialIframe" class="novisible">
+    <div id="swbsocialIframeContent">
+        <iframe src="http://www.infotec.com.mx" style="width: 100%; height: 100%" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>";
+    </div>
+</div>    
+    
+    
+<div id="captureUrl" class="novisible">
+    <div id="captureUrlContent">
+        <form name="url2redirect">
+            Ruta de servidor:<input type="url" name="url2set" id="url2set">
+            <input type="button" value="Conectar" onClick="if(supports_html5_storage()){localStorage.setItem('url2connect', this.form.url2set.value);getMainContent();}">
+        </form>
+    </div>
+</div>
+    
+    
+ <div id="main">
     <div id="mainContent">	
           <script type="text/javascript">// <![CDATA[
             getMainContent();
         // ]]>  
         </script>
     </div>
- </div>    
-    
-<div id="iframe" class="novisible">
-    <div id="iframeContent">
-        <iframe src="http://www.google.com" style="width: 100%; height: 100%" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-    </div>
-</div>
-    
-<div id="captureUrl" class="novisible">
-    <div id="captureUrlContent">
-        <form>
-            Ruta de servidor:<input type="url" name="url2set">
-            <input type="button" value="Conectar" onClick="setUrl2connect();">
-        </form>
-    </div>
-</div>
+ </div>  
     
  
 </body>
