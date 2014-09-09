@@ -5,11 +5,95 @@
 <title>SWB Social Mobile</title>
  <script type="text/javascript" src="cordova.js"></script>
  <script type="text/javascript" src="js/index.js"></script>
-<body> 
 
-<iframe src="http://swbsocial.infotec.com.mx/es/SWBAdmin/socialMobile/" style="width: 100%; height: 100%"
+
+<!--iframe src="http://swbsocial.infotec.com.mx/es/SWBAdmin/socialMobile/" style="width: 100%; height: 100%"
 scrolling="no" marginwidth="0" marginheight="0" frameborder="0" vspace="0" hspace="0">
-</iframe>
+</iframe-->
 
+<script type="text/javascript">// <![CDATA[
+        // http://diveintohtml5.info/storage.html
+        function supports_html5_storage()
+        {
+            try
+            {
+                return 'localStorage' in window && window['localStorage'] !== null;
+            }
+            catch (e)
+            {
+                return false;
+            }
+        }
+ 
+        // Prueba de lectura y escritura
+        function numCargas()
+        {
+            var obj = document.getElementById('veces');
+ 
+            if(supports_html5_storage())
+            {
+                // Leemos el contador actual
+                var num = localStorage.getItem("numCargas");
+ 
+                if(num == null) num = 0;
+                else
+                {
+                    num = parseInt(num);
+                    if(num == 'NaN') num = 0;
+                }
+ 
+                // Incrementamos y guardamos de nuevo
+                localStorage.setItem("numCargas", num+1);
+ 
+                // Establecemos el número
+                obj.innerHTML = num;
+            }
+            else obj.innerHTML = '<span style="color: red;">ERROR</span>';
+        }
+ 
+        // Prueba de lectura y escritura
+        function resetearNumCargas()
+        {      
+            var obj = document.getElementById('veces');
+ 
+            if(supports_html5_storage())
+            {
+                // Reseteamos
+                localStorage.setItem("numCargas", 0);
+                obj.innerHTML = 0;
+            }
+            else obj.innerHTML = '<span style="color: red;">ERROR</span>';
+        }
+ 
+// ]]></script>
+</head>
+<body>
+<h1 style="margin: 0px; padding: 0px;">Testeos</h1>
+<pre></pre>
+ 
+<hr />
+ 
+<pre></pre>
+<h2 style="margin: 0px; padding: 0px;">Almacenamiento</h2>
+<pre>
+ La página se ha cargado <span id="veces"><script type="text/javascript">// <![CDATA[
+numCargas();
+// ]]></script></span> veces.
+ 
+ 
+ <a href="javascript: location.reload();">Actualiza</a> o
+ <a href="javascript: resetearNumCargas();">resetea</a> la cuenta.
+ 
+ 
+ <a href="http://diveintohtml5.info/storage.html" target="new">HTML5 Local Storage</a>
+ 
+</pre>
+ 
+<hr />
+ 
+<pre>
+ 
+ <a href="http://androide.hijodeblog.com" target="new">Diario de un Androide</a>
+</pre>
 </body>
 </html>
