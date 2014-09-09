@@ -50,7 +50,9 @@
                 //alert("captureUrlContentJ:"+captureUrlContent);
                 document.getElementById("mainContent").innerHTML = captureUrlContent;
             }
+            return true;
         }
+        return false;
     }
 
     // Prueba de lectura y escritura
@@ -70,7 +72,9 @@
             localStorage.setItem('url2connect', form.url2set.value);
             alert('Puso:'+localStorage.getItem('url2connect'));
             getMainContent();
+            return true;
         }
+        return false;
     }
     
 -->
