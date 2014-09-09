@@ -22,6 +22,17 @@
         }
     }
     
+    //Eliminar el contenido de un div
+    function clearDiv(div)
+    {
+        alert("Entra a clearDiv...");
+        while(div.hasChildNodes())
+        {
+            alert("Elimina de div main:"+div);
+            div.removeChild(div.firstChild);
+        }
+    }
+    
     function getMainContent()
     {
         if(supports_html5_storage())
@@ -38,7 +49,9 @@
                 //document.getElementById("mainContent").innerHTML = document.getElementById("iframeContent").innerHTML;
                 //document.getElementById("mainContent").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
                  alert("Valor de url2connect al Inicio JorgeJim:"+url2connect); //
-                document.getElementById("mainContent").innerHTML ="";
+                var mainDiv=document.getElementById("mainContent");
+                clearDiv(mainDiv);
+                document.getElementById("mainContent").innerHTML="";
                 document.getElementById("mainContent").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
                 //document.all.mainContent.style.visibility = "visible";
                 resetUrl2connect();
@@ -54,7 +67,7 @@
         }
         return false;
     }
-
+    
     // Prueba de lectura y escritura
     function resetUrl2connect()
     {      
