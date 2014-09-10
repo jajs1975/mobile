@@ -12,7 +12,7 @@
 <script type="text/javascript">
     
     window.onload = function() {
-        alert("Se cargo...");
+        //alert("Se cargo...");
         getMainContent();
     };
     
@@ -31,7 +31,7 @@
     //Eliminar el contenido de un div
     function clearDiv(div)
     {
-        alert("Entra a clearDiv...");
+        //alert("Entra a clearDiv...");
         while(div.hasChildNodes())
         {
             //alert("Elimina de div mainJJ:"+div);
@@ -55,7 +55,7 @@
                 //alert("entra getMainContent-1.2:"+document.all.iframeContent.style.visibility);
                 //document.getElementById("mainContent").innerHTML = document.getElementById("iframeContent").innerHTML;
                 //document.getElementById("mainContent").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
-                alert("Valor de url2connect al Inicio JorgeJime:"+url2connect); //
+                //alert("Valor de url2connect al Inicio JorgeJime:"+url2connect); //
                 var mainDiv=document.getElementById("main");
                 clearDiv(mainDiv);
                 document.getElementById("main").innerHTML="";
@@ -63,7 +63,7 @@
                 clearDiv(footerDiv);                
                 document.getElementById("footerEnclosure").innerHTML="";
                 
-                document.getElementById("main").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+                document.getElementById("main").innerHTML ="<div data-role=\"main\" class=\"ui-content\" id=\"mainContent\"><iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe></div>";
                 //document.all.mainContent.style.visibility = "visible";
                 //resetUrl2connect();
             }else{
@@ -92,10 +92,10 @@
  
     function setUrl(form)
     {
-        alert("va a poner:"+form.url2set.value);
+        //alert("va a poner:"+form.url2set.value);
         if(supports_html5_storage()){
             localStorage.setItem('url2connect', form.url2set.value);
-            alert('Puso:'+localStorage.getItem('url2connect'));
+            //alert('Puso:'+localStorage.getItem('url2connect'));
             getMainContent();
             return true;
         }
