@@ -15,9 +15,13 @@
     function onDeviceReady() {
         // external url
         alert("Esta listo el chg...cordova...");
-        var ref = window.open(encodeURI('http://apache.org'), '_blank', 'location=yes');
+        var ref = window.open(encodeURI('http://www.semanticwebbuilder.com.mx/SWBSocial'), '_blank', 'location=yes');
+        ref.addEventListener('loadstart', function() { alert(event.url+",se empezo a cargar..."); });
+        ref.addEventListener('loadstop', function() { alert(event.url+",se termino de cargar..."); });
+        ref.addEventListener('exit', function() { alert(event.url+",se salio k..."); });
+
         // relative document
-        ref = window.open('next.html', '_self');
+        //ref = window.open('next.html', '_self');
     }
 
     </script>
