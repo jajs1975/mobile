@@ -8,8 +8,14 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 
+
 <script type="text/javascript">
-    <!--
+    
+    window.onload = function() {
+        alert("Se cargo...");
+        getMainContent();
+    };
+    
     function supports_html5_storage()
     {
         try
@@ -25,7 +31,7 @@
     //Eliminar el contenido de un div
     function clearDiv(div)
     {
-        //alert("Entra a clearDiv...");
+        alert("Entra a clearDiv...");
         while(div.hasChildNodes())
         {
             //alert("Elimina de div mainJJ:"+div);
@@ -50,10 +56,14 @@
                 //document.getElementById("mainContent").innerHTML = document.getElementById("iframeContent").innerHTML;
                 //document.getElementById("mainContent").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
                 alert("Valor de url2connect al Inicio JorgeJim:"+url2connect); //
-                var mainDiv=document.getElementById("mainContent");
+                var mainDiv=document.getElementById("main");
                 clearDiv(mainDiv);
-                document.getElementById("mainContent").innerHTML="";
-                document.getElementById("mainContent").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+                document.getElementById("main").innerHTML="";
+                var footerDiv=document.getElementById("footerEnclosure");
+                clearDiv(footerDiv);                
+                document.getElementById("footerEnclosure").innerHTML="";
+                
+                document.getElementById("main").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
                 //document.all.mainContent.style.visibility = "visible";
                 //resetUrl2connect();
             }else{
@@ -92,7 +102,6 @@
         return false;
     }
     
--->
 </script>
 
 
@@ -183,15 +192,14 @@
         <h1><a target="_blank" href="http://www.semanticwebbuilder.com.mx/SWBSocial">SWB Social&copy;</a></h1>
     </div>
     <div data-role="main" class="ui-content" id="mainContent">
-        <script type="text/javascript">
-            alert("Entra a esta madre k...");
-            getMainContent();
-        </script>
+        
     </div>                         
  </div>
-<div id="footer" data-role="footer">
-     <a href="#mainHelpPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext">Ayuda</a>
-</div>   
+    <div id="footerEnclosure">        
+        <div data-role="footer" id="footer">
+             <a href="#mainHelpPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext">Ayuda</a>
+        </div>
+    </div>
     
  
 </body>
