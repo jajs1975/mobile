@@ -25,10 +25,10 @@
     //Eliminar el contenido de un div
     function clearDiv(div)
     {
-        alert("Entra a clearDiv...");
+        //alert("Entra a clearDiv...");
         while(div.hasChildNodes())
         {
-            alert("Elimina de div mainJJ:"+div);
+            //alert("Elimina de div mainJJ:"+div);
             div.removeChild(div.firstChild);
         }
         return true;
@@ -39,7 +39,7 @@
         if(supports_html5_storage())
         {
             var url2connect = localStorage.getItem("url2connect");
-            alert("Valor de url2connect al Inicio Jorge:"+url2connect);
+            //alert("Valor de url2connect al Inicio Jorge:"+url2connect);
             if(url2connect!=null && url2connect.trim().length>0)
             {
                 //alert("entra getMainContent-1.1:"+document.getElementById("url2set").src);
@@ -49,7 +49,7 @@
                 //alert("entra getMainContent-1.2:"+document.all.iframeContent.style.visibility);
                 //document.getElementById("mainContent").innerHTML = document.getElementById("iframeContent").innerHTML;
                 //document.getElementById("mainContent").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
-                 alert("Valor de url2connect al Inicio JorgeJim:"+url2connect); //
+                alert("Valor de url2connect al Inicio JorgeJim:"+url2connect); //
                 var mainDiv=document.getElementById("mainContent");
                 clearDiv(mainDiv);
                 document.getElementById("mainContent").innerHTML="";
@@ -66,7 +66,7 @@
             }
             return true;
         }
-        return false;
+        return true;
     }
     
     // Prueba de lectura y escritura
@@ -77,6 +77,7 @@
             // Reseteamos
             localStorage.setItem("url2connect", "");
         }
+        return true;
     }
  
     function setUrl(form)
