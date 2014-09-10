@@ -31,7 +31,7 @@
     //Eliminar el contenido de un div
     function clearDiv(div)
     {
-        //alert("Entra a clearDiv...");
+        alert("Entra a clearDiv...");
         while(div.hasChildNodes())
         {
             //alert("Elimina de div mainJJ:"+div);
@@ -55,15 +55,15 @@
                 //alert("entra getMainContent-1.2:"+document.all.iframeContent.style.visibility);
                 //document.getElementById("mainContent").innerHTML = document.getElementById("iframeContent").innerHTML;
                 //document.getElementById("mainContent").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
-                //alert("Valor de url2connect al Inicio JorgeJime:"+url2connect); //
-                var mainDiv=document.getElementById("main");
+                alert("Valor de url2connect al Inicio JorgeJime:"+url2connect); //
+                var mainDiv=document.getElementById("swbsocial");
                 clearDiv(mainDiv);
-                document.getElementById("main").innerHTML="";
-                var footerDiv=document.getElementById("footerEnclosure");
-                clearDiv(footerDiv);                
-                document.getElementById("footerEnclosure").innerHTML="";
+                document.getElementById("swbsocial").innerHTML="";
+                //var footerDiv=document.getElementById("footerEnclosure");
+                //clearDiv(footerDiv);                
+                //document.getElementById("footerEnclosure").innerHTML="";
                 
-                document.getElementById("main").innerHTML ="<div data-role=\"main\" class=\"ui-content\" id=\"mainContent\"><iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe></div>";
+                document.getElementById("swbsocial").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
                 //document.all.mainContent.style.visibility = "visible";
                 resetUrl2connect();
             }else{
@@ -106,6 +106,8 @@
 
 
 <style type="text/css" media="all">
+
+    
 .novisible{
     visibility: hidden;
 }
@@ -157,6 +159,12 @@
 	overflow:auto;
 }
 
+#swbsocial{
+    width:100%;
+    height: 100%;
+    overflow:auto;
+}
+
 
 </style>
 
@@ -164,6 +172,8 @@
 </head>
 <body>
 
+<div id="swbsocial">    
+    
 <div id="swbsocialIframe" class="novisible">
     <div id="swbsocialIframeContent">
         <iframe src="#" style="width: 100%; height: 100%" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>";
@@ -195,12 +205,13 @@
         
     </div>                         
  </div>
-    <div id="footerEnclosure">        
-        <div data-role="footer" id="footer">
-             <a href="#mainHelpPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext">Ayuda</a>
-        </div>
-    </div>
     
+    
+<div id="footer" data-role="footer">
+     <a href="#mainHelpPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext">Ayuda</a>
+</div>
+    
+</div>    
  
 </body>
 </html>
