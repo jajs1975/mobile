@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>window.open Example</title>
+    <title>SWB Social Mobile</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 
     <script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
     <script type="text/javascript">
-
     // Wait for Cordova to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -14,18 +16,61 @@
     //
     function onDeviceReady() {
         // external url
-        alert("Esta listo el chg...cordova...");
-        var ref = window.open(encodeURI('http://www.semanticwebbuilder.com.mx/SWBSocial'), '_blank', 'location=yes');
-        ref.addEventListener('loadstart', function() { alert(event.url+",se empezo a cargar..."); });
-        ref.addEventListener('loadstop', function() { alert(event.url+",se termino de cargar..."); });
-        ref.addEventListener('exit', function() { alert(event.url+",se salio k..."); });
-
-        // relative document
-        //ref = window.open('next.html', '_self');
+    }
+    
+    function getBrands()
+    {
+        alert("Entra a getBrands");
+        var mainDiv=document.getElementById("mainContent");
+        clearDiv(mainDiv);
+        document.getElementById("mainContent").innerHTML ="<iframe src=\"http://swbsocial.infotec.com.mx/es/SWBAdmin/socialMobile/\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+    }
+    
+    function getNews()
+    {
+        var mainDiv=document.getElementById("mainContent");
+        clearDiv(mainDiv);
+        document.getElementById("mainContent").innerHTML ="<iframe src=\"http://www.semanticwebbuilder.com.mx/SWBSocial\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+    }
+    
+    //Eliminar el contenido de un div
+    function clearDiv(div)
+    {
+        alert("Entra a clearDiv...");
+        while(div.hasChildNodes())
+        {
+            //alert("Elimina de div mainJJ:"+div);
+            div.removeChild(div.firstChild);
+        }
+        return true;
     }
 
     </script>
   </head>
   <body>
+      
+     <div data-role="page" id="main">
+       <div data-role="panel" id="mainHelpPanel"> 
+           <h2>Ayuda</h2>
+           <p>Coloca la url para conectarte a tu instancia de SWBSocial</p>
+           <a href="#page" data-rel="close" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Cerrar</a>
+       </div>      
+       <div id="Header" data-role="header">
+           <h1><a target="_blank" href="http://www.semanticwebbuilder.com.mx/SWBSocial">SWB Social&copy;</a></h1>
+       </div>
+       <div data-role="main" class="ui-content" id="mainContent">
+           <iframe src="http://www.semanticwebbuilder.com.mx/SWBSocial/" style="width: 100%; height: 100%" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+       </div>                         
+    </div>
+    <div id="footer" data-role="footer">
+     <div id="mobileButons" data-type="horizontal">
+           <a class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-bullets ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getBrands();">;Marcas</a>
+           <a data-transition="slide" class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-user ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getNews();">Moticias</a>
+           <a class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-video ui-btn-icon-center ui-btn-icon-notext ui-btn-b ui-corner-all">Comunidad</a>
+           <a href="#mainHelpPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext">Ayuda</a>
+       </div>    
+    </div>  
+      
+      
   </body>
 </html>
