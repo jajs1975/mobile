@@ -21,22 +21,12 @@
         display:inline-block; 
         width:18%;    
         }
-        
-    .ui-Brandbtn { 
-        display:inline-block; 
-        width:90%;    
-    } 
-    
-    .ui-panel-wrapper { 
-        overflow: hidden;
-    } 
-        
     #mobileButons{ text-align:center;}
 
 
     #Header {
-            position:fixed;
-            top:-10px; left:0;
+            position:absolute;
+            top:0; left:0;
             width:100%;
             background-color:#222;
             background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #999), color-stop(0.02, #666), color-stop(1, #222));
@@ -73,10 +63,8 @@
             top:45px; bottom:0px; left:0;
             width:100%;
             height: 100%;
-            padding: 0;
-            margin: 0;
             background:#EFFBF5;
-            overflow:hidden;
+            overflow:auto;
     }
 </style>    
     
@@ -97,7 +85,7 @@
         alert("Entra a getBrands");
         var mainDiv=document.getElementById("mainContent");
         clearDiv(mainDiv);
-        document.getElementById("mainContent").innerHTML ="<iframe src=\"http://swbsocial.infotec.com.mx/es/SWBAdmin/socialMobile/\" style=\"width: 100%; height: 90%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+        document.getElementById("mainContent").innerHTML ="<iframe src=\"http://swbsocial.infotec.com.mx/es/SWBAdmin/socialMobile/\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
     }
     
     function getNews()
@@ -133,14 +121,13 @@
            <h1><a target="_blank" href="http://www.semanticwebbuilder.com.mx/SWBSocial">SWB Social&copy;</a></h1>
        </div>
        <div data-role="main" class="ui-content" id="mainContent">
-           <iframe src="http://www.semanticwebbuilder.com.mx/SWBSocial" style="width: 100%; height: 90%" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+           <iframe src="http://www.semanticwebbuilder.com.mx/SWBSocial" style="width: 100%; height: 100%" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
        </div>                         
     </div>
     <div id="footer" data-role="footer">
      <div id="mobileButons" data-type="horizontal">
            <a class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-bullets ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getBrands();">Marcas</a>
            <a data-transition="slide" class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-user ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getNews();">Moticias</a>
-           <a class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-video ui-btn-icon-center ui-btn-icon-notext ui-btn-b ui-corner-all">Comunidad</a>
            <a href="#mainHelpPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext">Ayuda</a>
        </div>    
     </div>  
