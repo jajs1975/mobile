@@ -1,0 +1,217 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>SWB Social Mobile</title>
+ <script type="text/javascript" src="js/index.js"></script>
+ <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+
+
+<script type="text/javascript">
+    
+    window.onload = function() {
+        //alert("Se cargo...");
+        getMainContent();
+    };
+    
+    function supports_html5_storage()
+    {
+        try
+        {
+            return 'localStorage' in window && window['localStorage'] !== null;
+        }
+        catch (e)
+        {
+            return false;
+        }
+    }
+    
+    //Eliminar el contenido de un div
+    function clearDiv(div)
+    {
+        alert("Entra a clearDiv...");
+        while(div.hasChildNodes())
+        {
+            //alert("Elimina de div mainJJ:"+div);
+            div.removeChild(div.firstChild);
+        }
+        return true;
+    }
+    
+    function getMainContent()
+    {
+        if(supports_html5_storage())
+        {
+            var url2connect = localStorage.getItem("url2connect");
+            //alert("Valor de url2connect al Inicio Jorge:"+url2connect);
+            if(url2connect!=null && url2connect.trim().length>0)
+            {
+                //alert("entra getMainContent-1.1:"+document.getElementById("url2set").src);
+                //document.getElementById("iframe").style.visibility = "visible";
+                //document.all.iframe.style.visibility = "visible";
+                //document.all.iframeContent.style.visibility = "visible";
+                //alert("entra getMainContent-1.2:"+document.all.iframeContent.style.visibility);
+                //document.getElementById("mainContent").innerHTML = document.getElementById("iframeContent").innerHTML;
+                //document.getElementById("mainContent").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+                alert("Valor de url2connect al Inicio JA1:"+url2connect); //
+                var mainDiv=document.getElementById("swbsocial");
+                clearDiv(mainDiv);
+                document.getElementById("swbsocial").innerHTML="";
+                //var footerDiv=document.getElementById("footerEnclosure");
+                //clearDiv(footerDiv);                
+                //document.getElementById("footerEnclosure").innerHTML="";
+                
+                document.getElementById("swbsocial").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+                //document.all.mainContent.style.visibility = "visible";
+                //resetUrl2connect();
+            }else{
+                var captureUrlContent=document.getElementById("captureUrlContent").innerHTML;
+                //alert("entra getMainContent-JJ2:"+captureUrlContent);
+                //document.getElementById("mainContent").innerHTML = document.getElementById("captureUrlContent").innerHTML;
+                //var captureUrlContent = document.getElementById('captureUrl').innerHTML;
+                //alert("captureUrlContentJ:"+captureUrlContent);
+                document.getElementById("mainContent").innerHTML = captureUrlContent;
+            }
+            return true;
+        }
+        return true;
+    }
+    
+    // Prueba de lectura y escritura
+    function resetUrl2connect()
+    {      
+        if(supports_html5_storage())
+        {
+            // Reseteamos
+            localStorage.setItem("url2connect", "");
+        }
+        return true;
+    }
+ 
+    function setUrl(form)
+    {
+        //alert("va a poner:"+form.url2set.value);
+        if(supports_html5_storage()){
+            localStorage.setItem('url2connect', form.url2set.value);
+            //alert('Puso:'+localStorage.getItem('url2connect'));
+            getMainContent();
+            return true;
+        }
+        return false;
+    }
+    
+</script>
+
+
+<style type="text/css" media="all">
+
+    
+.novisible{
+    visibility: hidden;
+}
+
+.visible{
+    visibility: visible;
+}
+
+#Header {
+	position:absolute;
+	top:0; left:0;
+	width:100%;
+	background-color:#222;
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #999), color-stop(0.02, #666), color-stop(1, #222));
+	background-image:-moz-linear-gradient(top, #999, #666 2%, #222);
+	background-image:-o-linear-gradient(top, #999, #666 2%, #222);
+	padding:0;
+	border-top:1px solid #444;
+	font-size:20px;
+	text-align:center;
+}
+
+#Header a {
+	color:#FF8000;
+	text-decoration:none;
+	font-weight:bold;
+	text-shadow:0 -1px 0 rgba(0,0,0,0.5);
+}
+
+#footer {
+	position:absolute;
+	bottom:0; left:0;
+	width:100%;
+	height:48px;
+	background-color:#222;
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #999), color-stop(0.02, #666), color-stop(1, #222));
+	background-image:-moz-linear-gradient(top, #999, #666 2%, #222);
+	background-image:-o-linear-gradient(top, #999, #666 2%, #222);
+	padding:0;
+	border-top:1px solid #444;
+        text-align:center;
+}
+
+#mainContent {
+	position:absolute; z-index:1;
+	top:45px; bottom:48px; left:0;
+	width:100%;
+	background:#EFFBF5;
+	overflow:auto;
+}
+
+#swbsocial{
+    width:100%;
+    height: 100%;
+    overflow:auto;
+}
+
+
+</style>
+
+
+</head>
+<body>
+
+<div id="swbsocial">    
+    
+<div id="swbsocialIframe" class="novisible">
+    <div id="swbsocialIframeContent">
+        <iframe src="#" style="width: 100%; height: 100%" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>";
+    </div>
+</div>    
+    
+    
+<div id="captureUrl" class="novisible">
+    <div id="captureUrlContent">
+        <form name="url2redirect">
+            <label for="url2set">Url de Servidor</label>
+            <input data-clear-btn="true" type="url" name="url2set" id="url2set">
+            <button onclick="setUrl(this.form);">Conectar</button>
+        </form>
+    </div>
+</div>
+    
+    
+ <div data-role="page" id="main">
+     <div data-role="panel" id="mainHelpPanel"> 
+        <h2>Ayuda</h2>
+        <p>Coloca la url para conectarte a tu instancia de SWBSocial</p>
+        <a href="#page" data-rel="close" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Cerrar</a>
+    </div>      
+    <div id="Header" data-role="header">
+        <h1><a target="_blank" href="http://www.semanticwebbuilder.com.mx/SWBSocial">SWB Social&copy;</a></h1>
+    </div>
+    <div data-role="main" class="ui-content" id="mainContent">
+        
+    </div>                         
+ </div>
+    
+    
+<div id="footer" data-role="footer">
+     <a href="#mainHelpPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext">Ayudame...</a>
+</div>
+    
+</div>    
+ 
+</body>
+</html>

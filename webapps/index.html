@@ -11,21 +11,19 @@
 
 <script type="text/javascript">
     
-    window.onload = function() {
-        //alert("Se cargo...");
-        getMainContent();
-    };
-    
-    function supports_html5_storage()
+    function getBrands()
     {
-        try
-        {
-            return 'localStorage' in window && window['localStorage'] !== null;
-        }
-        catch (e)
-        {
-            return false;
-        }
+        alert("Entra a getBrands");
+        var mainDiv=document.getElementById("mainContent");
+        clearDiv(mainDiv);
+        document.getElementById("mainContent").innerHTML ="<iframe src=\"http://swbsocial.infotec.com.mx/es/SWBAdmin/socialMobile/\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+    }
+    
+    function getNews()
+    {
+        var mainDiv=document.getElementById("mainContent");
+        clearDiv(mainDiv);
+        document.getElementById("mainContent").innerHTML ="<iframe src=\"http://www.semanticwebbuilder.com.mx/SWBSocial\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
     }
     
     //Eliminar el contenido de un div
@@ -39,75 +37,12 @@
         }
         return true;
     }
-    
-    function getMainContent()
-    {
-        if(supports_html5_storage())
-        {
-            var url2connect = localStorage.getItem("url2connect");
-            //alert("Valor de url2connect al Inicio Jorge:"+url2connect);
-            if(url2connect!=null && url2connect.trim().length>0)
-            {
-                //alert("entra getMainContent-1.1:"+document.getElementById("url2set").src);
-                //document.getElementById("iframe").style.visibility = "visible";
-                //document.all.iframe.style.visibility = "visible";
-                //document.all.iframeContent.style.visibility = "visible";
-                //alert("entra getMainContent-1.2:"+document.all.iframeContent.style.visibility);
-                //document.getElementById("mainContent").innerHTML = document.getElementById("iframeContent").innerHTML;
-                //document.getElementById("mainContent").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
-                alert("Valor de url2connect al Inicio JA1:"+url2connect); //
-                var mainDiv=document.getElementById("swbsocial");
-                clearDiv(mainDiv);
-                document.getElementById("swbsocial").innerHTML="";
-                //var footerDiv=document.getElementById("footerEnclosure");
-                //clearDiv(footerDiv);                
-                //document.getElementById("footerEnclosure").innerHTML="";
-                
-                document.getElementById("swbsocial").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
-                //document.all.mainContent.style.visibility = "visible";
-                //resetUrl2connect();
-            }else{
-                var captureUrlContent=document.getElementById("captureUrlContent").innerHTML;
-                //alert("entra getMainContent-JJ2:"+captureUrlContent);
-                //document.getElementById("mainContent").innerHTML = document.getElementById("captureUrlContent").innerHTML;
-                //var captureUrlContent = document.getElementById('captureUrl').innerHTML;
-                //alert("captureUrlContentJ:"+captureUrlContent);
-                document.getElementById("mainContent").innerHTML = captureUrlContent;
-            }
-            return true;
-        }
-        return true;
-    }
-    
-    // Prueba de lectura y escritura
-    function resetUrl2connect()
-    {      
-        if(supports_html5_storage())
-        {
-            // Reseteamos
-            localStorage.setItem("url2connect", "");
-        }
-        return true;
-    }
- 
-    function setUrl(form)
-    {
-        //alert("va a poner:"+form.url2set.value);
-        if(supports_html5_storage()){
-            localStorage.setItem('url2connect', form.url2set.value);
-            //alert('Puso:'+localStorage.getItem('url2connect'));
-            getMainContent();
-            return true;
-        }
-        return false;
-    }
-    
-</script>
+
+ </script>
 
 
 <style type="text/css" media="all">
 
-    
 .novisible{
     visibility: hidden;
 }
@@ -165,6 +100,13 @@
     overflow:auto;
 }
 
+.ui-btn { 
+    display:inline-block; 
+    width:18%;    
+    }
+    
+#mobileButons{ text-align:center;}
+
 
 </style>
 
@@ -208,7 +150,10 @@
     
     
 <div id="footer" data-role="footer">
-     <a href="#mainHelpPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext">Ayudame...</a>
+    <div id="mobileButons" data-type="horizontal">
+        <a class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext" onclick="getBrands();">Marcas...</a>
+        <a href="#mainHelpPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext">Ayudame...</a>
+    </div>
 </div>
     
 </div>    
