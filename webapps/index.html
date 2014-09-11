@@ -5,8 +5,82 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-
     <script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
+    
+   <style type="text/css" media="all">
+       
+    .novisible{
+        visibility: hidden;
+    }
+
+    .visible{
+        visibility: visible;
+    }
+
+    .ui-btn { 
+        display:inline-block; 
+        width:18%;    
+        }
+        
+    .ui-Brandbtn { 
+        display:inline-block; 
+        width:90%;    
+    } 
+    
+    .ui-panel-wrapper { 
+        overflow: hidden;
+    } 
+        
+    #mobileButons{ text-align:center;}
+
+
+    #Header {
+            position:fixed;
+            top:-10px; left:0;
+            width:100%;
+            background-color:#222;
+            background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #999), color-stop(0.02, #666), color-stop(1, #222));
+            background-image:-moz-linear-gradient(top, #999, #666 2%, #222);
+            background-image:-o-linear-gradient(top, #999, #666 2%, #222);
+            padding:0;
+            border-top:1px solid #444;
+            font-size:20px;
+            text-align:center;
+    }
+
+    #Header a {
+            color:#FF8000;
+            text-decoration:none;
+            font-weight:bold;
+            text-shadow:0 -1px 0 rgba(0,0,0,0.5);
+    }
+
+    #footer {
+            position:absolute;
+            bottom:0; left:0;
+            width:100%;
+            height:48px;
+            background-color:#222;
+            background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #999), color-stop(0.02, #666), color-stop(1, #222));
+            background-image:-moz-linear-gradient(top, #999, #666 2%, #222);
+            background-image:-o-linear-gradient(top, #999, #666 2%, #222);
+            padding:0;
+            border-top:1px solid #444;
+    }
+
+    #mainContent {
+            position:absolute; z-index:1;
+            top:45px; bottom:0px; left:0;
+            width:100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            background:#EFFBF5;
+            overflow:hidden;
+    }
+</style>    
+    
+    
     <script type="text/javascript">
     // Wait for Cordova to load
     //
@@ -23,7 +97,7 @@
         alert("Entra a getBrands");
         var mainDiv=document.getElementById("mainContent");
         clearDiv(mainDiv);
-        document.getElementById("mainContent").innerHTML ="<iframe src=\"http://swbsocial.infotec.com.mx/es/SWBAdmin/socialMobile/\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+        document.getElementById("mainContent").innerHTML ="<iframe src=\"http://swbsocial.infotec.com.mx/es/SWBAdmin/socialMobile/\" style=\"width: 100%; height: 90%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
     }
     
     function getNews()
@@ -59,12 +133,12 @@
            <h1><a target="_blank" href="http://www.semanticwebbuilder.com.mx/SWBSocial">SWB Social&copy;</a></h1>
        </div>
        <div data-role="main" class="ui-content" id="mainContent">
-           <iframe src="http://www.semanticwebbuilder.com.mx/SWBSocial" style="width: 100%; height: 100%" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+           <iframe src="http://www.semanticwebbuilder.com.mx/SWBSocial" style="width: 100%; height: 90%" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
        </div>                         
     </div>
     <div id="footer" data-role="footer">
      <div id="mobileButons" data-type="horizontal">
-           <a class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-bullets ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getBrands();">;Marcas</a>
+           <a class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-bullets ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getBrands();">Marcas</a>
            <a data-transition="slide" class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-user ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getNews();">Moticias</a>
            <a class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-video ui-btn-icon-center ui-btn-icon-notext ui-btn-b ui-corner-all">Comunidad</a>
            <a href="#mainHelpPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext">Ayuda</a>
