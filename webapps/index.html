@@ -5,11 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<title>iScroll demo: simple</title>
+<title>SWB Social</title>
 
-<!--script type="text/javascript" src="js/iscroll.js"></script-->
-
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <style type="text/css" media="all">
+    
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+    alert("carga cordova..");
+}
+    
 body,ul,li {
 	padding:0;
 	margin:0;
@@ -68,14 +76,6 @@ body {
 }
 
 #scroller {
-	position:absolute; z-index:1;
-/*	-webkit-touch-callout:none;*/
-	-webkit-tap-highlight-color:rgba(0,0,0,0);
-	width:100%;
-	padding:0;
-}
-
-#scroller1 {
      overflow: auto;
     -webkit-overflow-scrolling: touch; 
 }
@@ -97,138 +97,56 @@ body {
 	background-color:#fafafa;
 	font-size:14px;
 }
+#mobileButons{ text-align:center;}
+
 </style>
+
+ <script type="text/javascript">
+    function getBrands()
+    {
+        alert("Entra a getBrands");
+        var mainDiv=document.getElementById("scroller");
+        clearDiv(mainDiv);
+        document.getElementById("scroller").innerHTML ="<iframe src=\"http://swbsocial.infotec.com.mx/es/SWBAdmin/socialMobile/\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+    }
+    
+    function getNews()
+    {
+        var mainDiv=document.getElementById("scroller");
+        clearDiv(mainDiv);
+        document.getElementById("scroller").innerHTML ="<iframe src=\"http://www.semanticwebbuilder.com.mx/SWBSocial\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+    }
+    
+    //Eliminar el contenido de un div
+    function clearDiv(div)
+    {
+        alert("Entra a clearDiv...");
+        while(div.hasChildNodes())
+        {
+            //alert("Elimina de div mainJJ:"+div);
+            div.removeChild(div.firstChild);
+        }
+        return true;
+    }
+
+    </script>
+
 </head>
 <body>
 
-<div id="header"><a href="http://cubiq.org/iscroll">iScroll</a></div>
+<div id="header"><a target="_blank" href="http://www.semanticwebbuilder.com.mx/SWBSocial">SWB Social&copy;</a></div>
 <div id="wrapper">
-	<div id="scroller1">
-		<ul id="thelist">
-			<li>Pretty row 1</li>
-			<li>Pretty row 2</li>
-			<li>Pretty row 3</li>
-			<li>Pretty row 4</li>
-			<li>Pretty row 5</li>
-			<li>Pretty row 6</li>
-			<li>Pretty row 7</li>
-			<li>Pretty row 8</li>
-			<li>Pretty row 9</li>
-			<li>Pretty row 10</li>
-			<li>Pretty row 11</li>
-			<li>Pretty row 12</li>
-			<li>Pretty row 13</li>
-			<li>Pretty row 14</li>
-			<li>Pretty row 15</li>
-			<li>Pretty row 16</li>
-			<li>Pretty row 17</li>
-			<li>Pretty row 18</li>
-			<li>Pretty row 19</li>
-			<li>Pretty row 20</li>
-			<li>Pretty row 21</li>
-			<li>Pretty row 22</li>
-			<li>Pretty row 23</li>
-			<li>Pretty row 24</li>
-			<li>Pretty row 25</li>
-			<li>Pretty row 26</li>
-			<li>Pretty row 27</li>
-			<li>Pretty row 28</li>
-			<li>Pretty row 29</li>
-			<li>Pretty row 30</li>
-			<li>Pretty row 31</li>
-			<li>Pretty row 32</li>
-			<li>Pretty row 33</li>
-			<li>Pretty row 34</li>
-			<li>Pretty row 35</li>
-			<li>Pretty row 36</li>
-			<li>Pretty row 37</li>
-			<li>Pretty row 38</li>
-			<li>Pretty row 39</li>
-			<li>Pretty row 40</li>
-                        <li>Pretty row 1</li>
-			<li>Pretty row 2</li>
-			<li>Pretty row 3</li>
-			<li>Pretty row 4</li>
-			<li>Pretty row 5</li>
-			<li>Pretty row 6</li>
-			<li>Pretty row 7</li>
-			<li>Pretty row 8</li>
-			<li>Pretty row 9</li>
-			<li>Pretty row 10</li>
-			<li>Pretty row 11</li>
-			<li>Pretty row 12</li>
-			<li>Pretty row 13</li>
-			<li>Pretty row 14</li>
-			<li>Pretty row 15</li>
-			<li>Pretty row 16</li>
-			<li>Pretty row 17</li>
-			<li>Pretty row 18</li>
-			<li>Pretty row 19</li>
-			<li>Pretty row 20</li>
-			<li>Pretty row 21</li>
-			<li>Pretty row 22</li>
-			<li>Pretty row 23</li>
-			<li>Pretty row 24</li>
-			<li>Pretty row 25</li>
-			<li>Pretty row 26</li>
-			<li>Pretty row 27</li>
-			<li>Pretty row 28</li>
-			<li>Pretty row 29</li>
-			<li>Pretty row 30</li>
-			<li>Pretty row 31</li>
-			<li>Pretty row 32</li>
-			<li>Pretty row 33</li>
-			<li>Pretty row 34</li>
-			<li>Pretty row 35</li>
-			<li>Pretty row 36</li>
-			<li>Pretty row 37</li>
-			<li>Pretty row 38</li>
-			<li>Pretty row 39</li>
-			<li>Pretty row 40</li>
-                        <li>Pretty row 1</li>
-			<li>Pretty row 2</li>
-			<li>Pretty row 3</li>
-			<li>Pretty row 4</li>
-			<li>Pretty row 5</li>
-			<li>Pretty row 6</li>
-			<li>Pretty row 7</li>
-			<li>Pretty row 8</li>
-			<li>Pretty row 9</li>
-			<li>Pretty row 10</li>
-			<li>Pretty row 11</li>
-			<li>Pretty row 12</li>
-			<li>Pretty row 13</li>
-			<li>Pretty row 14</li>
-			<li>Pretty row 15</li>
-			<li>Pretty row 16</li>
-			<li>Pretty row 17</li>
-			<li>Pretty row 18</li>
-			<li>Pretty row 19</li>
-			<li>Pretty row 20</li>
-			<li>Pretty row 21</li>
-			<li>Pretty row 22</li>
-			<li>Pretty row 23</li>
-			<li>Pretty row 24</li>
-			<li>Pretty row 25</li>
-			<li>Pretty row 26</li>
-			<li>Pretty row 27</li>
-			<li>Pretty row 28</li>
-			<li>Pretty row 29</li>
-			<li>Pretty row 30</li>
-			<li>Pretty row 31</li>
-			<li>Pretty row 32</li>
-			<li>Pretty row 33</li>
-			<li>Pretty row 34</li>
-			<li>Pretty row 35</li>
-			<li>Pretty row 36</li>
-			<li>Pretty row 37</li>
-			<li>Pretty row 38</li>
-			<li>Pretty row 39</li>
-			<li>Pretty row 40</li>
-		</ul>
+	<div id="scroller">
+		<iframe src="http://www.semanticwebbuilder.com.mx/SWBSocial" style="width: 100%; height: 100%" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 	</div>
 </div>
-<div id="footer"></div>
+<div id="footer" data-role="footer">
+    <div id="mobileButons" data-type="horizontal">
+           <a class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-bullets ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getBrands();">Marcas</a>
+           <a data-transition="slide" class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-user ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getNews();">Moticias</a>
+           <a href="#mainHelpPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext">Ayuda</a>
+    </div>   
+</div>
 
 </body>
 </html>

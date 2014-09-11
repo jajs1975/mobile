@@ -8,8 +8,14 @@
     <script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
     
    <style type="text/css" media="all">
+       
+    document.addEventListener("deviceready", onDeviceReady, false);
 
-#Header {
+    function onDeviceReady() {
+    
+    }
+
+    #Header {
 	position:absolute;
 	top:0; left:0;
 	width:100%;
@@ -23,16 +29,16 @@
 	border-top:1px solid #444;
 	font-size:20px;
 	text-align:center;
-}
+    }
 
-#Header a {
+    #Header a {
 	color:#FF8000;
 	text-decoration:none;
 	font-weight:bold;
 	text-shadow:0 -1px 0 rgba(0,0,0,0.5);
-}
+    }
 
-#footer {
+    #footer {
 	position:absolute;
 	bottom:0; left:0;
 	width:100%;
@@ -43,17 +49,17 @@
 	background-image:-o-linear-gradient(top, #999, #666 2%, #222);
 	padding:0;
 	border-top:1px solid #444;
-}
+    }
 
-#wrapper {
+    #wrapper {
 	position:absolute; z-index:1;
 	top:45px; bottom:48px; left:0;
 	width:100%;
 	background:#EFFBF5;
 	overflow:auto;
-}
+    }
 
-#scroller {
+    #scroller {
 	position:relative;
 /*	-webkit-touch-callout:none;*/
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
@@ -61,18 +67,18 @@
 	float:left;
 	width:100%;
 	padding:0;
-}
+    }
 
-#scroller ul {
+    #scroller ul {
 	position:relative;
 	list-style:none;
 	padding:0;
 	margin:0;
 	width:100%;
 	text-align:left;
-}
+    }
 
-#scroller li {
+    #scroller li {
 	padding:0 10px;
 	height:40px;
 	line-height:40px;
@@ -80,11 +86,11 @@
 	border-top:1px solid #fff;
 	background-color:#fafafa;
 	font-size:14px;
-}
+    }
 
-#scroller li > a {
+    #scroller li > a {
 	display:block;
-}
+    }
 
 </style>
 
@@ -150,7 +156,7 @@
            <a class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-bullets ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getBrands();">Marcas</a>
            <a data-transition="slide" class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-user ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getNews();">Moticias</a>
            <a href="#mainHelpPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext">Ayuda</a>
-       </div>    
+     </div>    
     </div>  
       
       
