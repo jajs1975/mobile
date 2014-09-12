@@ -112,15 +112,15 @@ body {
     
     function setUrl2connect()
     {
-        alert("entra setUrl2connect-0:Elimina conexión");
+        //alert("entra setUrl2connect-0:Elimina conexión");
         resetUrl2connect();
         var url2connect=document.getElementById('serverURL').value;
-        alert("entra setUrl2connect-1:"+url2connect);
+        //alert("entra setUrl2connect-1:"+url2connect);
         if(supports_html5_storage())
         {
             // Saving url2connect
             localStorage.setItem("url2connect", url2connect);   
-            alert("entra setUrl2connect-2-Graba:"+localStorage.getItem("url2connect"));
+            //alert("entra setUrl2connect-2-Graba:"+localStorage.getItem("url2connect"));
             getBrands();
         }
     }
@@ -131,7 +131,7 @@ body {
         {
             // Reseteamos
             localStorage.setItem("url2connect", "");
-            alert("Se elimino url2connect:"+localStorage.getItem("url2connect"));
+            //alert("Se elimino url2connect:"+localStorage.getItem("url2connect"));
         }
     }
     
@@ -150,7 +150,7 @@ body {
     function getBrands()
     {
         var url2connect=getUrl2connect();
-        alert("En getBrands/url2connect:"+url2connect);
+        //alert("En getBrands/url2connect:"+url2connect);
         if(url2connect==null || url2connect.length==0)
         {
             alert("Debe proporcionar una ruta de instancia de SWB Social para conectar");
@@ -195,7 +195,7 @@ body {
 <div id="header"><a target="_blank" href="http://www.semanticwebbuilder.com.mx/SWBSocial">SWB Social&copy;</a></div>
 <div id="wrapper">
 	<div id="scroller">
-		<iframe src="http://www.semanticwebbuilder.com.mx/SWBSocial" style="width: 100%; height: 100%" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+		<iframe src="http://www.semanticwebbuilder.com.mx/SWBSocial" style="width: 100%; height: 100%" scrolling="yes" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 	</div>
 </div>
 <div id="footer" data-role="footer">
@@ -213,7 +213,7 @@ body {
         <form method="post">
             <label for="serverURL">servidor:</label>
             <input type="text" name="serverURL" id="serverURL">
-            <br><br>
+            <br><br><br>
             <input type="button" value="Conectar" onClick="setUrl2connect();">
         </form>
     </div>
