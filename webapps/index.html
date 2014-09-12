@@ -11,12 +11,12 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
  $( window.document ).bind('mobileinit', function(){
-                 alert("Entra a mobileinit");
+                 alert("Entra a mobileinitJ1");
                  if (navigator.userAgent.toLowerCase().indexOf("android") != -1)
                  {
-                   
+                 alert("Entra a mobileinitJ2");  
                  // your logic here
-                 $.mobile.loader.prototype.options.text = "loading";
+                 $.mobile.loadingMessage = "Please Wait";
                  $.mobile.defaultPageTransition = 'slideup';
                  $.mobile.defaultDialogTransition = 'none';
                  }
