@@ -97,11 +97,68 @@ body {
 </style>
 
  <script type="text/javascript">
+     
+    function supports_html5_storage()
+    {
+        try
+        {
+            return 'localStorage' in window && window['localStorage'] !== null;
+        }
+        catch (e)
+        {
+            return false;
+        }
+    }
+    
+    function setUrl2connect()
+    {
+        alert("entra setUrl2connect-0:Elimina conexión");
+        resetUrl2connect();
+        var url2connect=document.getElementById('serverURL').value;
+        alert("entra setUrl2connect-1:"+url2connect);
+        if(supports_html5_storage())
+        {
+            // Saving url2connect
+            localStorage.setItem("url2connect", url2connect);   
+            alert("entra setUrl2connect-2-Graba:"+localStorage.getItem("url2connect"));
+            getBrands();
+        }
+    }
+    
+    function resetUrl2connect()
+    {      
+        if(supports_html5_storage())
+        {
+            // Reseteamos
+            localStorage.setItem("url2connect", "");
+            alert("Se elimino url2connect:"+localStorage.getItem("url2connect"));
+        }
+    }
+    
+    //Getting the url to connect
+    function getUrl2connect()
+    {
+        var url2connect;
+        if(supports_html5_storage())
+        {
+            // Reading the storaged url
+            url2connect = localStorage.getItem("url2connect");            
+        }
+        return url2connect;
+    }
+     
     function getBrands()
     {
+        var url2connect=getUrl2connect();
+        alert("En getBrands/url2connect:"+url2connect);
+        if(url2connect==null || url2connect.length==0)
+        {
+            alert("Debe proporcionar una ruta de instancia de SWB Social para conectar");
+            return true;
+        }
         var mainDiv=document.getElementById("scroller");
         clearDiv(mainDiv);
-        document.getElementById("scroller").innerHTML ="<iframe src=\"http://swbsocial.infotec.com.mx/es/SWBAdmin/socialMobile/\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+        document.getElementById("scroller").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
     }
     
     function getNews()
@@ -109,6 +166,14 @@ body {
         var mainDiv=document.getElementById("scroller");
         clearDiv(mainDiv);
         document.getElementById("scroller").innerHTML ="<iframe src=\"http://www.semanticwebbuilder.com.mx/SWBSocial\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+    }
+    
+    function getConfigForm()
+    {
+        var mainDiv=document.getElementById("scroller");
+        clearDiv(mainDiv);
+        var form=document.getElementById("captureUrlContent").innerHTML;
+        document.getElementById("scroller").innerHTML =form;
     }
     
     //Eliminar el contenido de un div
@@ -135,11 +200,24 @@ body {
 </div>
 <div id="footer" data-role="footer">
     <div id="mobileButons" data-type="horizontal">
-           <a class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-bullets ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getBrands();">Marcas1</a>
-           <a data-transition="slide" class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-user ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getNews();">Moticias</a>
-           <a href="#mainHelpPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-notext">Ayuda</a>
+           <a class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-bullets ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getBrands();">Marcas</a>
+           <a data-transition="slide" class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-user ui-btn-icon-left ui-btn-b ui-corner-all" onclick="getNews();">Noticias</a>
+           <a data-transition="slide" data-role="button" data-icon="gear"  class="ui-btn ui-mini ui-btn-inline ui-shadow ui-icon-gear ui-btn-icon-center ui-btn-icon-notext ui-btn-b ui-corner-all" onclick="getConfigForm();">Configurar</a>
     </div>   
 </div>
+
+
+<!-- Configuración de servidor -->
+   <div id="captureUrl" class="novisible">
+    <div id="captureUrlContent">
+        <form method="post">
+            <label for="serverURL">servidor:</label>
+            <input type="text" name="serverURL" id="serverURL">
+            <br><br>
+            <input type="button" value="Conectar" onClick="setUrl2connect();">
+        </form>
+    </div>
+   </div>
 
 </body>
 </html>
