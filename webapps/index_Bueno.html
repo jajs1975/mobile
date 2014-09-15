@@ -31,19 +31,6 @@
                  });*/
 </script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-<script>
-    $(document).on('pagebeforeshow', "#mainpage",function () {       
-        setTimeout(function(){
-            $.mobile.loading('show');
-            },1);    
-        });
-        
-     $(document).on('pageshow', '#mainpage', function(){  
-        setTimeout(function(){
-            $.mobile.loading('hide');
-        },2000);      
-     });    
-</script>
 <style type="text/css" media="all">
     
 
@@ -131,6 +118,8 @@ body {
 </style>
 
  <script type="text/javascript">
+     
+     $.mobile.loading( 'show' );
      
     function supports_html5_storage()
     {
@@ -243,7 +232,7 @@ body {
 </head>
 <body>
 
-<div id="mainpage">
+<div data-role="page" id="mainpage">
     <div id="header"><a target="_blank" href="http://www.semanticwebbuilder.com.mx/SWBSocial">SWB Social&copy;</a></div>
     <div id="wrapper">
             <div id="scroller">
@@ -267,7 +256,7 @@ body {
             <label for="serverURL">servidor:</label>
             <input type="text" name="serverURL" id="serverURL">
             <br><br><br>
-            <button onClick="setUrl2connect();">Conectar</button>
+            <input type="button" value="Conectar" onClick="setUrl2connect();">
         </form>
     </div>
    </div>
