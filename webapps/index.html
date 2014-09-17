@@ -144,17 +144,30 @@ body {
         }
     }
     
-    function setUrl2connect()
+    function validateForm()
     {
-        //alert("entra setUrl2connect-0:Elimina conexión");
+        var message;
+        var myRegExp =/^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3})(?!127(?:\.\d{1,3}){3})(?!169\.254(?:\.\d{1,3}){2})(?!192\.168(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?$/i;
+        var urlToValidate = document.getElementById('serverURL').value;
+        if (!myRegExp.test(urlToValidate)){
+            message = "URL No Valida";
+            alert(message);
+            return false;
+        }else{
+            setUrl2connect(urlToValidate);
+        }
+    }
+    
+    
+    function setUrl2connect(url2connect)
+    {
         resetUrl2connect();
-        var url2connect=document.getElementById('serverURL').value;
-        //alert("entra setUrl2connect-1:"+url2connect);
+        alert("entra setUrl2connect-1:"+url2connect);
         if(supports_html5_storage())
         {
             // Saving url2connect
             localStorage.setItem("url2connect", url2connect);   
-            //alert("entra setUrl2connect-2-Graba:"+localStorage.getItem("url2connect"));
+            alert("entra setUrl2connect-2-Graba:"+localStorage.getItem("url2connect"));
             getBrands();
         }
     }
@@ -184,7 +197,7 @@ body {
     function getBrands()
     {
         var url2connect=getUrl2connect();
-        //alert("En getBrands/url2connect:"+url2connect);
+        alert("En getBrands/url2connect:"+url2connect);
         if(url2connect==null || url2connect.length==0)
         {
             alert("Debe proporcionar una ruta de instancia de SWB Social para conectar");
@@ -193,6 +206,7 @@ body {
         var mainDiv=document.getElementById("scroller");
         clearDiv(mainDiv);   
         document.getElementById("scroller").innerHTML ="<iframe src=\""+url2connect+"\" style=\"width: 100%; height: 100%\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\"></iframe>";
+        
         //$.mobile.loadPage( url2connect );
         /*
         document.getElementById("scroller").innerHTML ="<script>"
@@ -265,9 +279,9 @@ body {
     <div id="captureUrlContent">
         <form method="post">
             <label for="serverURL">servidor:</label>
-            <input type="text" name="serverURL" id="serverURL">
+            <input type="url" name="serverURL" id="serverURL" required="true" autocomplete="on"  autofocus placeholder="Url de Servidor" pattern="https?://.+">
             <br><br><br>
-            <button onClick="setUrl2connect();">Conectar</button>
+            <button onClick="validateForm();">Conectar</button>
         </form>
     </div>
    </div>
